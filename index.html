@@ -338,7 +338,7 @@
   
   /* Faint watermark text inside the background card */
   .reveal::before {
-    content: "ก้องรักเก้าน้าาา";
+    content: "ก้องรักเก้าที่สุดด";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -539,6 +539,75 @@
     background: linear-gradient(135deg, rgba(255,46,154,0.4), rgba(123,47,247,0.5));
   }
 
+  /* ---------- Mobile Responsive Styles ---------- */
+  @media (max-width: 600px) {
+    .reveal {
+      width: min(92vw, 420px);
+      padding: 26px 18px;
+      border-radius: 22px;
+    }
+    .reveal::before {
+      font-size: 32px;
+    }
+    .profile-duo {
+      margin: 8px auto 14px auto;
+    }
+    .avatar-wrap {
+      width: 90px;
+      height: 90px;
+      padding: 3px;
+    }
+    .avatar-left {
+      margin-right: -8px;
+    }
+    .avatar-right {
+      margin-left: -8px;
+    }
+    .heart-center {
+      width: 36px;
+      height: 36px;
+      border-width: 2px;
+    }
+    .heart-icon {
+      font-size: 18px;
+    }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+    .headline {
+      font-size: clamp(26px, 7.5vw, 40px);
+      margin: 8px 0 20px 0;
+    }
+    .again {
+      padding: 12px 26px;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+    .ring {
+      width: 115px;
+      height: 115px;
+    }
+    .orb {
+      width: 68px;
+      height: 68px;
+    }
+  }
+
+  @media (max-height: 700px) {
+    .reveal {
+      padding: 18px 16px;
+    }
+    .avatar-wrap {
+      width: 80px;
+      height: 80px;
+    }
+    .headline {
+      margin: 6px 0 14px 0;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .blob, .ring::before, .ring::after, .orb, .floating-heart {
       animation: none !important;
@@ -577,7 +646,7 @@
         <img src="kao.jpg" alt="เก้า" class="avatar-img">
       </div>
     </div>
-    <h1 class="headline"><span class="accent">ก้องรักเก้าน้าาา</span></h1>
+    <h1 class="headline"><span class="accent">ก้องรักเก้าที่สุดด</span></h1>
     <button class="again" id="again">เปิดอีกครั้ง 💖</button>
   </div>
 </div>
