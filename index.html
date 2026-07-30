@@ -360,21 +360,22 @@
     pointer-events: auto;
   }
 
-  /* ---------- Profile Duo (Avatars Touching + Heart in Middle) ---------- */
+  /* ---------- Profile Duo (Avatars separated + Heart in Gap) ---------- */
   .profile-duo {
     position: relative;
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 24px;
     margin: 12px auto 16px auto;
     width: fit-content;
   }
 
   .avatar-wrap {
     position: relative;
-    width: 110px;
-    height: 110px;
+    width: 105px;
+    height: 105px;
     border-radius: 50%;
     padding: 4px;
     transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
@@ -383,16 +384,16 @@
   .avatar-left {
     background: linear-gradient(135deg, var(--violet), var(--lavender));
     box-shadow: 0 0 25px rgba(123, 47, 247, 0.6);
-    margin-right: -10px;
-    transform: translateX(-35px) rotate(-15deg);
+    margin: 0;
+    transform: translateX(-40px) rotate(-15deg);
     opacity: 0;
   }
 
   .avatar-right {
     background: linear-gradient(135deg, var(--magenta), var(--rose));
     box-shadow: 0 0 25px rgba(255, 46, 154, 0.6);
-    margin-left: -10px;
-    transform: translateX(35px) rotate(15deg);
+    margin: 0;
+    transform: translateX(40px) rotate(15deg);
     opacity: 0;
   }
 
@@ -413,9 +414,16 @@
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    object-position: center;
     border: 3px solid #ffffff;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .avatar-left .avatar-img {
+    object-position: 65% 20%;
+  }
+
+  .avatar-right .avatar-img {
+    object-position: center 30%;
   }
 
   .heart-center {
@@ -424,15 +432,15 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) scale(0);
-    width: 44px;
-    height: 44px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     background: linear-gradient(135deg, #ff2e9a, #7b2ff7);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 22px rgba(255, 46, 154, 0.85), 0 0 40px rgba(123, 47, 247, 0.65);
-    border: 2.5px solid #ffffff;
+    border: 2px solid #ffffff;
     transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
@@ -550,22 +558,23 @@
       font-size: 32px;
     }
     .profile-duo {
+      gap: 16px;
       margin: 8px auto 14px auto;
     }
     .avatar-wrap {
-      width: 90px;
-      height: 90px;
+      width: 86px;
+      height: 86px;
       padding: 3px;
     }
     .avatar-left {
-      margin-right: -8px;
+      margin: 0;
     }
     .avatar-right {
-      margin-left: -8px;
+      margin: 0;
     }
     .heart-center {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border-width: 2px;
     }
     .heart-icon {
