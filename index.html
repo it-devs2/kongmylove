@@ -478,6 +478,8 @@
     object-fit: cover;
     border: 3px solid #ffffff;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    filter: none !important;
+    transform: translateZ(0);
   }
 
   .avatar-left .avatar-img {
@@ -689,25 +691,404 @@
       animation: none !important;
     }
   }
+  /* Midnight / Couple Mode Styles */
+  body.midnight-mode {
+    --bg-dark: #2a0845;
+    --bg-light: #6441a5;
+    background: linear-gradient(135deg, #1f0b2e, #4a1c40);
+  }
+
+  body.midnight-mode .aurora .blob1 { background: radial-gradient(circle, rgba(255,215,0,0.6) 0%, rgba(255,215,0,0) 70%); }
+  body.midnight-mode .aurora .blob2 { background: radial-gradient(circle, rgba(255,105,180,0.5) 0%, rgba(255,105,180,0) 70%); }
+  body.midnight-mode .aurora .blob3 { background: radial-gradient(circle, rgba(255,182,193,0.5) 0%, rgba(255,182,193,0) 70%); }
+
+  body.midnight-mode .reveal::before {
+    content: "Kong & Kao";
+    color: rgba(255, 215, 0, 0.05);
+  }
+
+  body.midnight-mode .reveal {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 60px rgba(255, 215, 0, 0.15), inset 0 0 0 1px rgba(255, 215, 0, 0.25);
+  }
+
+  body.midnight-mode .accent {
+    background: linear-gradient(135deg, #ffd700, #ff69b4, #ffdf00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  }
+  
+  body.midnight-mode .avatar-left {
+    background: linear-gradient(135deg, #ffd700, #ffdf00);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.75);
+  }
+  body.midnight-mode .avatar-right {
+    background: linear-gradient(135deg, #ff69b4, #ffb6c1);
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.75);
+  }
+
+  /* Baccarat Slot Machine Reel Spin Container */
+  .slot-container {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+  }
+
+  .slot-container.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .slot-container.floating {
+    animation: flightWave 2.6s ease-in-out infinite alternate;
+  }
+
+  @keyframes flightWave {
+    0% { transform: translate(-50%, -50%) translateY(-12px) rotate(-2.5deg) scale(1.02); }
+    50% { transform: translate(-50%, -50%) translateY(14px) rotate(2.5deg) scale(1.06); }
+    100% { transform: translate(-50%, -50%) translateY(-8px) rotate(-1.5deg) scale(1.04); }
+  }
+
+  .slot-container.flying {
+    transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    top: 36px;
+    left: 50%;
+    transform: translate(-50%, 0) scale(0.35);
+    opacity: 0;
+  }
+
+  .slot-reel-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 34px;
+    background: rgba(30, 15, 30, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid #ffd700;
+    border-radius: 50px;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.65), inset 0 0 25px rgba(255, 105, 180, 0.45);
+  }
+
+  .slot-box {
+    min-width: 58px;
+    text-align: center;
+    font-size: clamp(34px, 8vw, 62px);
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow: 0 0 18px rgba(255, 215, 0, 0.85);
+    font-family: monospace, system-ui;
+  }
+
+  .slot-slash {
+    font-size: clamp(30px, 7vw, 50px);
+    color: #ff69b4;
+    font-weight: 700;
+  }
+
+  .slot-heart {
+    font-size: clamp(30px, 7vw, 50px);
+    animation: slotHeartPulse 1.2s infinite alternate ease-in-out;
+  }
+
+  @keyframes slotHeartPulse {
+    0% { transform: scale(1) rotate(-5deg); }
+    100% { transform: scale(1.25) rotate(5deg); filter: drop-shadow(0 0 12px #ff69b4); }
+  }
+
+  /* Exact Pill Capsule Style matching uploaded photo */
+  .anniversary-badge {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -60px) scale(0.6);
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 28px;
+    background: rgba(10, 17, 40, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid #ff69b4;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: #ff75b5;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 105, 180, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.8s ease, visibility 0.8s ease;
+    overflow: hidden;
+  }
+
+  .anniversary-badge.landed {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0) scale(1);
+    animation: pillFloat 3.2s ease-in-out infinite alternate;
+  }
+
+  @keyframes pillFloat {
+    0% { transform: translate(-50%, 0); box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 0 20px rgba(255,105,180,0.4); }
+    100% { transform: translate(-50%, -6px); box-shadow: 0 14px 40px rgba(0,0,0,0.6), 0 0 35px rgba(255,105,180,0.75); }
+  }
+
+  .badge-text {
+    color: #ffb6c1;
+    text-shadow: 0 0 12px rgba(255, 105, 180, 0.9);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .badge-heart {
+    font-size: 18px;
+    display: inline-block;
+    animation: heartPulse 1.4s infinite alternate ease-in-out;
+  }
+
+  @keyframes heartPulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.28); filter: drop-shadow(0 0 10px #ff69b4); }
+  }
+
+  .sparkle-border {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 2s ease;
+    box-shadow: inset 0 0 30px rgba(255, 105, 180, 0.5), inset 0 0 80px rgba(10, 17, 40, 0.6);
+  }
+  body.midnight-mode .sparkle-border {
+    opacity: 1;
+    animation: pulse-border 3s infinite alternate;
+  }
+  @keyframes pulse-border {
+    from { box-shadow: inset 0 0 20px rgba(255, 105, 180, 0.4), inset 0 0 50px rgba(10, 17, 40, 0.5); }
+    to { box-shadow: inset 0 0 40px rgba(255, 105, 180, 0.8), inset 0 0 100px rgba(10, 17, 40, 0.8); }
+  }
+
+  .test-btn {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+  }
+  .test-btn:hover { background: rgba(255,255,255,0.3); }
+
+  /* Countdown Wrap Styles */
+
+  .countdown-wrap {
+    text-align: center;
+    margin: 10px 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.show .countdown-wrap {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .countdown-wrap.dissolving {
+    opacity: 0 !important;
+    transform: scale(1.4) translateY(-20px) !important;
+    filter: blur(12px);
+  }
+  body.midnight-mode .countdown-wrap {
+    display: none;
+  }
+  .countdown-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+  .countdown-timer {
+    font-size: 24px;
+    font-family: monospace;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .countdown-timer.urgent {
+    color: #ff3333;
+    text-shadow: 0 0 15px rgba(255, 51, 51, 0.8), 0 0 30px rgba(255, 51, 51, 0.6);
+    animation: urgentPulse 0.5s infinite alternate;
+  }
+  @keyframes urgentPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+  }
+
+  /* Cinematic Midnight Supernova Transition Overlay */
+  .midnight-supernova {
+    position: fixed;
+    top: 50%; left: 50%;
+    width: 100vw; height: 100vh;
+    margin-top: -50vh; margin-left: -50vw;
+    background: radial-gradient(circle, #ffffff 0%, rgba(255,215,0,0.95) 30%, rgba(255,105,180,0.8) 60%, rgba(123,47,247,0) 80%);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: scale(0.01);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .midnight-supernova.active {
+    opacity: 1;
+    transform: scale(3.5);
+  }
+  .midnight-supernova.fade-out {
+    opacity: 0;
+    transition: opacity 1.8s ease-out;
+  }
+
+  /* Navy Blue & Pink Romantic Melancholic Layer Crossfade (100% Smooth 10s Opacity Fade) */
+  .dark-theme-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 40%, #0d1b2a 0%, #0a1128 65%, #050a18 100%);
+    opacity: 0;
+    transition: opacity 10s ease-in-out;
+  }
+  body.warm-melancholy .dark-theme-overlay {
+    opacity: 1;
+  }
+
+  .warm-aurora {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 10s ease-in-out;
+  }
+  body.warm-melancholy .warm-aurora {
+    opacity: 1;
+  }
+
+  .w-blob1 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    width: 85vmax; height: 85vmax;
+    top: -25vmax; left: -15vmax;
+    background: radial-gradient(circle, rgba(255, 46, 154, 0.4), transparent 70%); /* Romantic Pink Glow */
+    animation: drift1 32s ease-in-out infinite;
+  }
+  .w-blob2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    width: 80vmax; height: 80vmax;
+    bottom: -22vmax; right: -12vmax;
+    background: radial-gradient(circle, rgba(13, 27, 42, 0.85), transparent 70%); /* Deep Navy Blue */
+    animation: drift2 28s ease-in-out infinite;
+  }
+  .w-blob3 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    width: 75vmax; height: 75vmax;
+    top: 40%; left: 50%;
+    transform: translate(-50%,-50%);
+    background: radial-gradient(circle, rgba(255, 117, 181, 0.45), transparent 70%); /* Soft Pink Glow */
+    animation: drift3 22s ease-in-out infinite;
+  }
+
+  body.warm-melancholy .sparkle-border {
+    box-shadow: inset 0 0 35px rgba(255, 105, 180, 0.45), inset 0 0 80px rgba(10, 17, 40, 0.6);
+    transition: box-shadow 10s ease-in-out;
+  }
+
+  body.warm-melancholy .reveal {
+    background: rgba(10, 17, 40, 0.75);
+    border-color: rgba(255, 105, 180, 0.45);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85), inset 0 0 35px rgba(255, 105, 180, 0.2);
+    transition: background 10s ease-in-out, border-color 10s ease-in-out, box-shadow 10s ease-in-out;
+  }
+
+  /* Audio Visualizer (Subtle, Sleek & Ultra-Slow 4.5s Fade-In) */
+  #visualizer-canvas {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 65px;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 4.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 4.5s ease;
+  }
+  #visualizer-canvas.active {
+    opacity: 0.75;
+    transform: translateY(0);
+  }
 </style>
 </head>
 <body>
+<!-- Baccarat Slot Reel Container -->
+<div class="slot-container" id="slot-container">
+  <div class="slot-reel-wrap">
+    <span class="slot-heart">💖</span>
+    <div class="slot-box"><span id="reel-day">00</span></div>
+    <span class="slot-slash">/</span>
+    <div class="slot-box"><span id="reel-month">00</span></div>
+    <span class="slot-slash">/</span>
+    <div class="slot-box"><span id="reel-year">00</span></div>
+    <span class="slot-heart">💖</span>
+  </div>
+</div>
+
+<div class="anniversary-badge" id="anniversary-badge">
+  <span class="badge-heart">💖</span>
+  <span class="badge-text">9/8/69</span>
+  <span class="badge-heart">💖</span>
+</div>
+<div class="midnight-supernova" id="midnight-supernova"></div>
+<div class="sparkle-border" id="sparkle-border"></div>
 
 <div class="stage" id="stage">
+  <div class="dark-theme-overlay" id="dark-theme-overlay"></div>
   <div class="aurora" id="aurora">
     <div class="blob blob1"></div>
     <div class="blob blob2"></div>
     <div class="blob blob3"></div>
   </div>
+  <div class="aurora warm-aurora" id="warm-aurora">
+    <div class="w-blob1"></div>
+    <div class="w-blob2"></div>
+    <div class="w-blob3"></div>
+  </div>
 
   <div class="speed-lines"></div>
   <canvas id="space-canvas"></canvas>
   <div class="heart-layer" id="heart-layer"></div>
-
-  <div class="seal-wrap" id="seal">
-    <div class="ring"><div class="orb"></div></div>
-    <div class="seal-label">แตะเพื่อเปิด</div>
-  </div>
+  <canvas id="visualizer-canvas"></canvas>
 
   <div class="reveal" id="reveal">
     <div class="eyebrow">✨ ข้อความลับ ✨</div>
@@ -720,12 +1101,362 @@
         <img src="kao.jpg" alt="เก้า" class="avatar-img">
       </div>
     </div>
-    <h1 class="headline"><span class="accent">I wasn't planning on liking you this much.</span></h1>
-    <button class="again" id="again">เปิดอีกครั้ง 💖</button>
+    <div class="countdown-wrap" id="countdown-wrap">
+      <div class="countdown-label">เหลือเวลาอีก</div>
+      <div class="countdown-timer" id="countdown-timer">00:00:00</div>
+    </div>
+
+    <h1 class="headline" id="headline-text"><span class="accent">I wasn't planning on liking you this much.</span></h1>
   </div>
 </div>
 
 <script>
+  // ---------- Sound Effects System (Web Audio API) ----------
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const audioCtx = new AudioContext();
+
+  function initAudio() {
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }
+
+  // Audio Visualizer setup
+  let audioAnalyser = null;
+  let audioSource = null;
+
+  function connectAudioAnalyser(audioElement) {
+    // If opening as local file (file://), do NOT route through WebAudio MediaElementSource
+    // because Chrome/Edge silently mutes local media elements due to CORS security rules!
+    if (window.location.protocol === 'file:') {
+      console.log('Local file protocol detected: Playing audio directly to speakers.');
+      return;
+    }
+
+    if (!audioAnalyser) {
+      try {
+        audioAnalyser = audioCtx.createAnalyser();
+        audioAnalyser.fftSize = 256;
+        audioAnalyser.smoothingTimeConstant = 0.8;
+        audioSource = audioCtx.createMediaElementSource(audioElement);
+        audioSource.connect(audioAnalyser);
+        audioAnalyser.connect(audioCtx.destination);
+      } catch (e) {
+        console.warn('AudioSource connection:', e);
+      }
+    }
+  }
+
+  function showVisualizer() {
+    const visualizerCanvas = document.getElementById('visualizer-canvas');
+    if (!visualizerCanvas) return;
+    visualizerCanvas.classList.add('active');
+    startVisualizerDrawing();
+  }
+
+  function startVisualizerDrawing() {
+    const visualizerCanvas = document.getElementById('visualizer-canvas');
+    if (!visualizerCanvas || visualizerCanvas.dataset.started) return;
+    visualizerCanvas.dataset.started = "true";
+    const vizCtx = visualizerCanvas.getContext('2d');
+
+    function drawVisualizer() {
+      requestAnimationFrame(drawVisualizer);
+      visualizerCanvas.width = window.innerWidth;
+      visualizerCanvas.height = 65;
+
+      const bufferLength = audioAnalyser ? audioAnalyser.frequencyBinCount : 64;
+      const dataArray = new Uint8Array(bufferLength);
+
+      if (audioAnalyser) {
+        audioAnalyser.getByteFrequencyData(dataArray);
+      } else {
+        // High-quality rhythmic simulation for local file playback
+        const time = Date.now() / 120;
+        const beat = Math.pow(Math.sin(time * 0.8), 6); // Pulsing kick beat
+        for (let i = 0; i < bufferLength; i++) {
+          const wave1 = Math.sin(time * 2 + i * 0.2) * 20 + 20;
+          const wave2 = Math.cos(time * 1.2 - i * 0.15) * 15;
+          const noise = Math.random() * 8;
+          const bassBoost = i < 10 ? beat * 35 : 0;
+          dataArray[i] = Math.min(255, Math.max(5, wave1 + wave2 + noise + bassBoost));
+        }
+      }
+
+      vizCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+
+      const totalLines = 64;
+      const step = visualizerCanvas.width / totalLines;
+      const MAX_BAR_H = 38;
+
+      for (let i = 0; i < totalLines; i++) {
+        const dataIdx = Math.floor((i / totalLines) * bufferLength);
+        const val = dataArray[dataIdx] || 0;
+        const boost = dataIdx < 8 ? 1.2 : (dataIdx > 30 ? 1.3 : 1.0);
+        const lineH = Math.min(MAX_BAR_H, ((val * boost) / 255) * MAX_BAR_H + 3);
+
+        const x = i * step + step / 2;
+        const yStart = visualizerCanvas.height;
+        const yEnd = yStart - lineH;
+
+        vizCtx.beginPath();
+        vizCtx.moveTo(x, yStart);
+        vizCtx.lineTo(x, yEnd);
+
+        // Pink to Deep Navy stroke gradient
+        const grad = vizCtx.createLinearGradient(x, yStart, x, yEnd);
+        grad.addColorStop(0, 'rgba(10, 17, 40, 0.2)');
+        grad.addColorStop(0.5, 'rgba(255, 46, 154, 0.85)');
+        grad.addColorStop(1, 'rgba(255, 117, 181, 1)');
+
+        vizCtx.strokeStyle = grad;
+        vizCtx.lineWidth = 2.5;
+        vizCtx.lineCap = 'round';
+        vizCtx.shadowBlur = 8;
+        vizCtx.shadowColor = '#ff69b4';
+        vizCtx.stroke();
+      }
+
+      // Continuous glowing pink wave line along top tips
+      vizCtx.beginPath();
+      for (let i = 0; i < totalLines; i++) {
+        const dataIdx = Math.floor((i / totalLines) * bufferLength);
+        const val = dataArray[dataIdx] || 0;
+        const boost = dataIdx < 8 ? 1.2 : (dataIdx > 30 ? 1.3 : 1.0);
+        const lineH = Math.min(MAX_BAR_H, ((val * boost) / 255) * MAX_BAR_H + 3);
+
+        const x = i * step + step / 2;
+        const y = visualizerCanvas.height - lineH;
+        if (i === 0) vizCtx.moveTo(x, y);
+        else {
+          const prevIdx = Math.floor(((i - 1) / totalLines) * bufferLength);
+          const prevVal = dataArray[prevIdx] || 0;
+          const prevBoost = prevIdx < 8 ? 1.2 : (prevIdx > 30 ? 1.3 : 1.0);
+          const prevY = visualizerCanvas.height - Math.min(MAX_BAR_H, ((prevVal * prevBoost) / 255) * MAX_BAR_H + 3);
+          const prevX = (i - 1) * step + step / 2;
+          const cpX = (prevX + x) / 2;
+          vizCtx.quadraticCurveTo(cpX, prevY, x, y);
+        }
+      }
+      vizCtx.strokeStyle = 'rgba(255, 117, 181, 0.95)';
+      vizCtx.lineWidth = 2;
+      vizCtx.shadowBlur = 10;
+      vizCtx.shadowColor = '#ff69b4';
+      vizCtx.stroke();
+    }
+
+    drawVisualizer();
+  }
+
+  // Make sure clicking anywhere activates the audio context
+  window.addEventListener('click', initAudio, { once: true });
+
+  function playCountdownTickSound() {
+    if (audioCtx.state === 'suspended') return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(10, audioCtx.currentTime + 0.1);
+    gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.1);
+  }
+
+  function playUrgentTickSound() {
+    if (audioCtx.state === 'suspended') return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(1500, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1000, audioCtx.currentTime + 0.15);
+    gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.15);
+  }
+
+  function playTickSound() {
+    if (audioCtx.state === 'suspended') return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(3000, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.04);
+    gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.04);
+  }
+
+  function playDingSound() {
+    if (audioCtx.state === 'suspended') return;
+    const freqs = [1046.50, 1318.51, 1567.98]; // C6, E6, G6
+    freqs.forEach((freq, i) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2 + (i*0.2));
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 1.8);
+    });
+  }
+
+  function playJackpotSound() {
+    if (audioCtx.state === 'suspended') return;
+    const duration = 3.5;
+    const chord = [523.25, 659.25, 783.99, 1046.50]; // Epic C Major chord (C5, E5, G5, C6)
+    
+    // Create an epic pad with multiple oscillators
+    chord.forEach((freq, i) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = i % 2 === 0 ? 'sawtooth' : 'square';
+      osc.frequency.value = freq;
+      
+      // Filter for sweeping effect
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(400, audioCtx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(4000, audioCtx.currentTime + 0.8);
+      
+      // Envelopes
+      gain.gain.setValueAtTime(0, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 0.1);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+      
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioCtx.destination);
+      
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    });
+
+    // Add a deep sub impact (Sub-bass drop)
+    const subOsc = audioCtx.createOscillator();
+    const subGain = audioCtx.createGain();
+    subOsc.type = 'sine';
+    subOsc.frequency.setValueAtTime(100, audioCtx.currentTime);
+    subOsc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 1.5);
+    subGain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+    subGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 2.5);
+    subOsc.connect(subGain);
+    subGain.connect(audioCtx.destination);
+    subOsc.start();
+    subOsc.stop(audioCtx.currentTime + 2.5);
+  }
+
+  function playWhooshSound() {
+    if (audioCtx.state === 'suspended') return;
+    const dur = 1.0;
+    const bufferSize = audioCtx.sampleRate * dur;
+    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = Math.random() * 2 - 1;
+    }
+    const noiseSrc = audioCtx.createBufferSource();
+    noiseSrc.buffer = noiseBuffer;
+    
+    const noiseFilter = audioCtx.createBiquadFilter();
+    noiseFilter.type = 'lowpass';
+    noiseFilter.frequency.setValueAtTime(200, audioCtx.currentTime);
+    noiseFilter.frequency.exponentialRampToValueAtTime(4000, audioCtx.currentTime + 0.5);
+    noiseFilter.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 1.0);
+    
+    const noiseGain = audioCtx.createGain();
+    noiseGain.gain.setValueAtTime(0, audioCtx.currentTime);
+    noiseGain.gain.linearRampToValueAtTime(0.12, audioCtx.currentTime + 0.5);
+    noiseGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + dur);
+    
+    noiseSrc.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(audioCtx.destination);
+    noiseSrc.start();
+  }
+
+  function playMagicRevealSound() {
+    if (audioCtx.state === 'suspended') return;
+    
+    const duration = 4.0;
+    
+    // 1. Clean Deep Sub Impact (No buzzing saw waves, just pure sine thump)
+    const subOsc = audioCtx.createOscillator();
+    const subGain = audioCtx.createGain();
+    subOsc.type = 'sine';
+    subOsc.frequency.setValueAtTime(80, audioCtx.currentTime);
+    subOsc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 1.0);
+    
+    subGain.gain.setValueAtTime(0, audioCtx.currentTime);
+    subGain.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.05);
+    subGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.5);
+    
+    subOsc.connect(subGain);
+    subGain.connect(audioCtx.destination);
+    subOsc.start();
+    subOsc.stop(audioCtx.currentTime + 2.5);
+
+    // 2. Ethereal Shimmering Chords (Magic Reveal)
+    const chordFreqs = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // C5, E5, G5, C6, E6
+    chordFreqs.forEach((freq, i) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = i % 2 === 0 ? 'sine' : 'triangle';
+      osc.frequency.value = freq;
+      
+      // Detune slightly for a chorus/shimmer effect
+      osc.detune.value = (Math.random() - 0.5) * 20;
+      
+      gain.gain.setValueAtTime(0, audioCtx.currentTime);
+      // Staggered attacks for a harp-like strum or swell
+      gain.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime + 0.1 + (i * 0.1));
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    });
+
+    // 3. High-frequency Air / Fairy Dust (High-pass Noise)
+    const bufferSize = audioCtx.sampleRate * 2.0;
+    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = Math.random() * 2 - 1;
+    }
+    const noiseSrc = audioCtx.createBufferSource();
+    noiseSrc.buffer = noiseBuffer;
+    
+    const noiseFilter = audioCtx.createBiquadFilter();
+    noiseFilter.type = 'highpass';
+    noiseFilter.frequency.setValueAtTime(4000, audioCtx.currentTime); // Keep it very high, no bass
+    
+    const noiseGain = audioCtx.createGain();
+    noiseGain.gain.setValueAtTime(0, audioCtx.currentTime);
+    noiseGain.gain.linearRampToValueAtTime(0.05, audioCtx.currentTime + 0.2);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.0);
+    
+    noiseSrc.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(audioCtx.destination);
+    noiseSrc.start();
+  }
+
   // ---------- 3D Hyperspace Warp Canvas ----------
   const canvas = document.getElementById('space-canvas');
   const ctx = canvas.getContext('2d');
@@ -928,72 +1659,19 @@
 
   // ---------- Interactive Sequence ----------
   const stage = document.getElementById('stage');
-  const seal = document.getElementById('seal');
   const reveal = document.getElementById('reveal');
   const aurora = document.getElementById('aurora');
-  const againBtn = document.getElementById('again');
 
-  function openSurprise() {
-    const rect = seal.getBoundingClientRect();
-    const originX = rect.left + rect.width / 2;
-    const originY = rect.top + rect.height / 2;
-
-    // 1. Trigger shockwave & burst of hearts
-    spawnShockwave(originX, originY);
-    spawnHeartBurst(originX, originY);
-
-    // 2. Hide orb seal
-    seal.classList.add('hidden');
-
-    // 3. PHASE 1: Warp Speed (Hyperspace travel)
-    stage.classList.add('speeding');
-    aurora.classList.add('speeding');
-    aurora.classList.remove('destination');
-    targetSpeed = 42; // High-speed star trails
-
-    // Launch continuous floating hearts
+  function initScene() {
+    targetSpeed = 0.5;
+    aurora.classList.add('destination');
+    reveal.classList.add('show');
     startHeartRain();
-
-    // 4. PHASE 2: Decelerate & Arrive at Destination
-    setTimeout(() => {
-      // Speed slows down smoothly to a gentle halt
-      targetSpeed = 0.5;
-      stage.classList.remove('speeding');
-      aurora.classList.remove('speeding');
-      aurora.classList.add('destination');
-    }, 1800);
-
-    // 5. PHASE 3: Reveal Message after arriving at destination
-    setTimeout(() => {
-      reveal.classList.add('show');
-      // Trigger heart explosion when the two avatars run & collide in the center
-      setTimeout(() => {
-        spawnHeartBurst(cx, cy);
-      }, 750);
-    }, 2400);
   }
-
-  function resetSurprise() {
-    reveal.classList.remove('show');
-    aurora.classList.remove('destination');
-    aurora.classList.remove('speeding');
-    stage.classList.remove('speeding');
-    
-    stopHeartRain();
-    heartLayer.innerHTML = '';
-    targetSpeed = 0.8;
-
-    setTimeout(() => {
-      seal.classList.remove('hidden');
-    }, 600);
-  }
-
-  seal.addEventListener('click', openSurprise);
-  againBtn.addEventListener('click', resetSurprise);
 
   // Click anywhere to spawn extra floating hearts after reveal
   document.addEventListener('click', (e) => {
-    if (reveal.classList.contains('show') && !againBtn.contains(e.target)) {
+    if (reveal.classList.contains('show')) {
       for (let i = 0; i < 5; i++) {
         setTimeout(() => {
           const heart = document.createElement('div');
@@ -1057,72 +1735,341 @@
     const centerY = 80;
     const time = Date.now() * 0.003;
 
-    // 1. Creepy Eldritch Shadow Tendrils (Wiggly Horror Tentacles between profiles)
-    const TENTACLE_COUNT = 7;
-    for (let t = 0; t < TENTACLE_COUNT; t++) {
-      eCtx.beginPath();
-      eCtx.moveTo(leftX, centerY);
+    // Check if Midnight Mode is active
+    const isMidnight = document.body.classList.contains('midnight-mode');
 
-      const segments = 22;
-      const dx = (rightX - leftX) / segments;
+    if (isMidnight) {
+      // Midnight Golden & Pink Romantic Energy Bridge
+      eCtx.globalCompositeOperation = 'screen';
+      const WAVE_COUNT = 5;
+      for (let w = 0; w < WAVE_COUNT; w++) {
+        eCtx.beginPath();
+        eCtx.moveTo(leftX, centerY);
 
-      for (let s = 1; s < segments; s++) {
-        const x = leftX + dx * s;
-        const norm = s / segments;
-        const envelope = Math.sin(norm * Math.PI); // Fades near profile edges
-        
-        // Creepy writhing sine waves
-        const wave1 = Math.sin(time * 4.2 + s * 0.45 + t * 1.8) * 14;
-        const wave2 = Math.cos(time * 3.1 + s * 0.8 + t * 0.9) * 8;
-        const jitter = (Math.random() - 0.5) * 3.5;
-        const y = centerY + (wave1 + wave2 + jitter) * envelope;
+        const waveFreq = 2.2 + w * 0.4;
+        const waveAmp = 8 + Math.sin(time * 0.9 + w) * 6;
+        const waveShift = time * (1.1 + w * 0.25);
 
-        eCtx.lineTo(x, y);
+        for (let x = leftX; x <= rightX; x += 2) {
+          const norm = (x - leftX) / (rightX - leftX);
+          const envelope = Math.sin(norm * Math.PI);
+          const y = centerY + Math.sin(norm * waveFreq * Math.PI + waveShift) * waveAmp * envelope;
+          
+          if (x === leftX) eCtx.moveTo(x, y);
+          else eCtx.lineTo(x, y);
+        }
+
+        const alpha = 0.38 + Math.sin(time * 1.2 + w) * 0.16;
+        const strokeGrad = eCtx.createLinearGradient(leftX, centerY, rightX, centerY);
+        strokeGrad.addColorStop(0, `rgba(255, 105, 180, ${alpha * 0.85})`); // Romantic Pink
+        strokeGrad.addColorStop(0.5, `rgba(123, 47, 247, ${alpha})`); // Deep Navy Violet
+        strokeGrad.addColorStop(1, `rgba(255, 117, 181, ${alpha * 0.85})`); // Soft Pink
+
+        eCtx.strokeStyle = strokeGrad;
+        eCtx.lineWidth = 1.3 + Math.sin(time * 2.2 + w) * 0.6;
+        eCtx.shadowBlur = 15;
+        eCtx.shadowColor = 'rgba(255, 105, 180, 0.75)';
+        eCtx.stroke();
       }
-      eCtx.lineTo(rightX, centerY);
 
-      const strokeGrad = eCtx.createLinearGradient(leftX, centerY, rightX, centerY);
-      strokeGrad.addColorStop(0, 'rgba(136, 0, 0, 0.85)');
-      strokeGrad.addColorStop(0.5, 'rgba(255, 0, 51, 0.95)');
-      strokeGrad.addColorStop(1, 'rgba(30, 0, 20, 0.85)');
+      // Pink sparks
+      horrorSparks.forEach(p => {
+        p.progress += p.speed;
+        if (p.progress >= 1.0) p.progress = 0;
 
-      eCtx.strokeStyle = strokeGrad;
-      eCtx.lineWidth = 1.2 + (t % 3) * 0.8;
-      eCtx.shadowBlur = 16;
-      eCtx.shadowColor = '#ff0033';
-      eCtx.stroke();
+        let startPos = p.direction === 1 ? leftX : rightX;
+        let targetPos = p.direction === 1 ? rightX : leftX;
+        let px = startPos + (targetPos - startPos) * p.progress;
+
+        const norm = (px - leftX) / (rightX - leftX);
+        const envelope = Math.sin(norm * Math.PI);
+        const py = centerY + Math.sin(time * 5 + p.offsetY) * p.offsetY * envelope;
+        const alpha = Math.sin(norm * Math.PI) * (0.4 + Math.random() * 0.6);
+
+        eCtx.beginPath();
+        eCtx.arc(px, py, p.size, 0, Math.PI * 2);
+        eCtx.fillStyle = '#fff';
+        eCtx.globalAlpha = Math.max(0, alpha);
+        eCtx.shadowBlur = 12;
+        eCtx.shadowColor = '#ff69b4';
+        eCtx.fill();
+      });
+
+    } else {
+      // 1. Creepy Eldritch Shadow Tendrils (Wiggly Horror Tentacles between profiles)
+      const TENTACLE_COUNT = 7;
+      for (let t = 0; t < TENTACLE_COUNT; t++) {
+        eCtx.beginPath();
+        eCtx.moveTo(leftX, centerY);
+
+        const segments = 22;
+        const dx = (rightX - leftX) / segments;
+
+        for (let s = 1; s < segments; s++) {
+          const x = leftX + dx * s;
+          const norm = s / segments;
+          const envelope = Math.sin(norm * Math.PI); // Fades near profile edges
+          
+          // Creepy writhing sine waves
+          const wave1 = Math.sin(time * 4.2 + s * 0.45 + t * 1.8) * 14;
+          const wave2 = Math.cos(time * 3.1 + s * 0.8 + t * 0.9) * 8;
+          const jitter = (Math.random() - 0.5) * 3.5;
+          const y = centerY + (wave1 + wave2 + jitter) * envelope;
+
+          eCtx.lineTo(x, y);
+        }
+        eCtx.lineTo(rightX, centerY);
+
+        const strokeGrad = eCtx.createLinearGradient(leftX, centerY, rightX, centerY);
+        strokeGrad.addColorStop(0, 'rgba(136, 0, 0, 0.85)');
+        strokeGrad.addColorStop(0.5, 'rgba(255, 0, 51, 0.95)');
+        strokeGrad.addColorStop(1, 'rgba(30, 0, 20, 0.85)');
+
+        eCtx.strokeStyle = strokeGrad;
+        eCtx.lineWidth = 1.2 + (t % 3) * 0.8;
+        eCtx.shadowBlur = 16;
+        eCtx.shadowColor = '#ff0033';
+        eCtx.stroke();
+      }
+
+      // 2. Creepy Blood & Ash Sparks (Floating horror embers)
+      horrorSparks.forEach(p => {
+        p.progress += p.speed;
+        if (p.progress >= 1.0) p.progress = 0;
+
+        let startPos = p.direction === 1 ? leftX : rightX;
+        let targetPos = p.direction === 1 ? rightX : leftX;
+        let px = startPos + (targetPos - startPos) * p.progress;
+
+        const norm = (px - leftX) / (rightX - leftX);
+        const envelope = Math.sin(norm * Math.PI);
+        const py = centerY + Math.sin(time * 5 + p.offsetY) * p.offsetY * envelope;
+
+        const alpha = Math.sin(norm * Math.PI) * (0.3 + Math.random() * 0.7);
+
+        eCtx.beginPath();
+        eCtx.arc(px, py, p.size, 0, Math.PI * 2);
+        eCtx.fillStyle = p.color;
+        eCtx.globalAlpha = Math.max(0, alpha);
+        eCtx.shadowBlur = 12;
+        eCtx.shadowColor = '#ff0033';
+        eCtx.fill();
+      });
     }
-
-    // 2. Creepy Blood & Ash Sparks (Floating horror embers)
-    horrorSparks.forEach(p => {
-      p.progress += p.speed;
-      if (p.progress >= 1.0) p.progress = 0;
-
-      let startPos = p.direction === 1 ? leftX : rightX;
-      let targetPos = p.direction === 1 ? rightPos = rightX : leftX;
-      let px = startPos + (targetPos - startPos) * p.progress;
-
-      const norm = (px - leftX) / (rightX - leftX);
-      const envelope = Math.sin(norm * Math.PI);
-      const py = centerY + Math.sin(time * 5 + p.offsetY) * p.offsetY * envelope;
-
-      const alpha = Math.sin(norm * Math.PI) * (0.3 + Math.random() * 0.7);
-
-      eCtx.beginPath();
-      eCtx.arc(px, py, p.size, 0, Math.PI * 2);
-      eCtx.fillStyle = p.color;
-      eCtx.globalAlpha = Math.max(0, alpha);
-      eCtx.shadowBlur = 12;
-      eCtx.shadowColor = '#ff0033';
-      eCtx.fill();
-    });
 
     eCtx.globalAlpha = 1;
     eCtx.shadowBlur = 0;
     requestAnimationFrame(renderEnergyBridge);
   }
   requestAnimationFrame(renderEnergyBridge);
+
+  // ---------- Countdown & Midnight Logic ----------
+  const countdownTimer = document.getElementById('countdown-timer');
+  const countdownWrap = document.getElementById('countdown-wrap');
+  const headlineText = document.getElementById('headline-text');
+  const midnightSupernova = document.getElementById('midnight-supernova');
+
+  // Set the target date: August 9, 2026, 00:00:00 (Thai Time)
+  const targetDate = new Date("2026-08-09T00:00:00+07:00").getTime();
+  const trackingWindow = 2 * 60 * 60 * 1000; // 2 Hours color transition window
+  let isMidnight = false;
+  let countdownInterval;
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+      clearInterval(countdownInterval);
+      triggerMidnight();
+      return;
+    }
+
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownTimer.innerText = 
+      String(hours).padStart(2, '0') + ":" + 
+      String(minutes).padStart(2, '0') + ":" + 
+      String(seconds).padStart(2, '0');
+
+    // Visual and audio effects for the final countdown
+    if (distance <= 10000 && distance > 0 && !isMidnight) {
+      countdownTimer.classList.add('urgent');
+      playUrgentTickSound();
+    } else if (distance > 0 && !isMidnight) {
+      countdownTimer.classList.remove('urgent');
+      playCountdownTickSound();
+    }
+
+    // Gradual color warmth shift on background aurora as midnight approaches (protecting avatar photos)
+    if (!isMidnight && distance < trackingWindow) {
+      const progress = 1 - (distance / trackingWindow); // 0 to 1 as midnight approaches
+      const auroraElem = document.getElementById('aurora');
+      if (auroraElem) {
+        auroraElem.style.filter = `hue-rotate(${-progress * 40}deg) saturate(${100 + progress * 35}%)`;
+      }
+    }
+  }
+
+  function runSlotBaccaratAnimation(callback) {
+    const slotContainer = document.getElementById('slot-container');
+    const reelDay = document.getElementById('reel-day');
+    const reelMonth = document.getElementById('reel-month');
+    const reelYear = document.getElementById('reel-year');
+    const anniversaryBadge = document.getElementById('anniversary-badge');
+
+    slotContainer.classList.remove('flying', 'floating');
+    slotContainer.classList.add('show');
+
+    // 1. Rapid Slot Spinning reels
+    let daySpin = setInterval(() => {
+      reelDay.innerText = String(Math.floor(Math.random() * 30 + 1)).padStart(2, '0');
+      playTickSound();
+    }, 45);
+
+    let monthSpin = setInterval(() => {
+      reelMonth.innerText = String(Math.floor(Math.random() * 12 + 1)).padStart(2, '0');
+    }, 45);
+
+    let yearSpin = setInterval(() => {
+      reelYear.innerText = String(Math.floor(Math.random() * 80 + 10)).padStart(2, '0');
+    }, 45);
+
+    // Stop Reel 1 (Day = 9) at 0.9s
+    setTimeout(() => {
+      clearInterval(daySpin);
+      reelDay.innerText = "9";
+      reelDay.style.color = "#ffffff";
+      reelDay.style.textShadow = "0 0 25px #ffffff, 0 0 35px #ffd700";
+      spawnShockwave(cx - 90, cy);
+      playDingSound();
+    }, 900);
+
+    // Stop Reel 2 (Month = 8) at 1.5s
+    setTimeout(() => {
+      clearInterval(monthSpin);
+      reelMonth.innerText = "8";
+      reelMonth.style.color = "#ffffff";
+      reelMonth.style.textShadow = "0 0 25px #ffffff, 0 0 35px #ffd700";
+      spawnShockwave(cx, cy);
+      playDingSound();
+    }, 1500);
+
+    // Stop Reel 3 (Year = 69) at 2.1s -> Jackpot Celebration!
+    setTimeout(() => {
+      clearInterval(yearSpin);
+      reelYear.innerText = "69";
+      reelYear.style.color = "#ffffff";
+      reelYear.style.textShadow = "0 0 25px #ffffff, 0 0 35px #ffd700";
+      
+      // Jackpot explosions
+      spawnShockwave(cx, cy);
+      spawnHeartBurst(cx, cy);
+      playJackpotSound();
+
+      // Start mid-air floating animation ("บินค้างหน้าจอ 5 วินาที")
+      slotContainer.classList.add('floating');
+
+      // Hold floating for 5 seconds (2.1s -> 7.1s)
+      setTimeout(() => {
+        // Fly up & shrink into top pill box ("ย่อบินเข้าไปอยู่ในกล่องทรงรี")
+        slotContainer.classList.remove('floating');
+        slotContainer.classList.add('flying');
+        playWhooshSound();
+
+        setTimeout(() => {
+          slotContainer.classList.remove('show');
+          anniversaryBadge.classList.add('landed');
+          spawnShockwave(cx, 30);
+          playDingSound();
+          if (callback) callback();
+        }, 1100);
+      }, 5000);
+    }, 2100);
+  }
+
+  function triggerMidnight() {
+    initAudio();
+    if (isMidnight) return;
+    isMidnight = true;
+
+    // PHASE 1: Cinematic Supernova Burst & Warp Speed Acceleration
+    targetSpeed = 28;
+    midnightSupernova.classList.add('active');
+    countdownWrap.classList.add('dissolving');
+
+    spawnShockwave(cx, cy);
+    spawnHeartBurst(cx, cy);
+    startHeartRain();
+    playMagicRevealSound();
+
+    // 1. Play background music 5 seconds after explosion
+    setTimeout(() => {
+      const bgm = document.getElementById('bgm');
+      if (bgm) {
+        initAudio();
+        bgm.volume = 0.85;
+        bgm.play().then(() => {
+          connectAudioAnalyser(bgm);
+        }).catch(e => {
+          console.log('BGM play failed, retrying:', e);
+          bgm.play();
+        });
+      }
+    }, 5000);
+
+    // PHASE 2 (700ms): Morph theme & trigger Baccarat Slot animation
+    setTimeout(() => {
+      document.body.classList.add('midnight-mode');
+      const auroraElem = document.getElementById('aurora');
+      if (auroraElem) auroraElem.style.filter = 'none';
+
+      // Supernova fades out as Slot Machine Reel appears
+      midnightSupernova.classList.add('fade-out');
+
+      // Run Baccarat Slot spinning -> 5-sec flight -> Fly into top Pill box
+      runSlotBaccaratAnimation(() => {
+        // Morph headline text after pill badge lands
+        headlineText.style.transition = 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
+        headlineText.style.opacity = '0';
+        headlineText.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+          headlineText.innerHTML = '<span class="accent">Happy Anniversary! Kong & Kao, officially together. I love you.</span>';
+          headlineText.style.opacity = '1';
+          headlineText.style.transform = 'scale(1)';
+        }, 400);
+
+        // Reveal Audio Wave Visualizer lines AFTER date finishes flying into top pill badge!
+        setTimeout(() => {
+          showVisualizer();
+        }, 600);
+      });
+    }, 700);
+
+    // 3. Start background color morph smoothly right after music starts (at 5.5s)
+    // with a super slow 8-second transition so it evolves organically without any sudden shift!
+    setTimeout(() => {
+      document.body.classList.add('warm-melancholy');
+    }, 5500);
+
+    // PHASE 3 (2200ms): Ease warp speed
+    setTimeout(() => {
+      targetSpeed = 0.5;
+      midnightSupernova.className = 'midnight-supernova';
+    }, 2200);
+  }
+
+  // Start countdown
+  countdownInterval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Initialize Scene on load
+  window.addEventListener('DOMContentLoaded', initScene);
 </script>
 
+<audio id="bgm" src="Zedd - Clarity ft. Foxes (but you are in a bathroom at a party).mp3" preload="auto"></audio>
 </body>
 </html>
